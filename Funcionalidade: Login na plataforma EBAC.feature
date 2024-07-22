@@ -3,32 +3,30 @@
             Eu quero fazer o login na plataforma
             Para visualizar meus pedidos
 
-            Cenário: Login com sucesso
+            Cenário: Registro 
+            Dado que estou na página de login da EBAC-SHOP e desejo me registrar
+            Quando eu insiro um email "<email>" e senha "<senha>" e clico em "Register"
+            Então eu vejo uma mensagem de alerta "<mensagem>"
+             
+            Exemplos:
+            | usuario              | senha            | mensagem                                           |
+            | bruno@gmail.com      | 123@test         | Olá, bruno@gmail.com (não é bruno@gmail.com? Sair) |
+            
+            
+            Cenário: Login 
             Dado que estou na página de login da EBAC-SHOP
-            Quando eu insiro um usuário e senha válidos
-            E eu clico no botão "Login"
-            Então eu sou direcionado para a tela de checkout
-            E eu vejo meus pedidos
-
-            Cenário: Login com sucesso_2
-            Dado que estou na página de login da EBAC-SHOP
-            Quando eu insiro um usuário "<usuario>" e senha "<senha>" válidos
-            | usuario            | senha         |
-            | usuario_cadastrado | senha_correta |
-            E eu clico no botão "Login"
-            Então eu sou direcionado para a tela de checkout
-            E eu vejo meus pedidos
-
-            Cenário: Login com falha
-            Dado que estou na página de login da EBAC-SHOP
-            Quando eu insiro um usuário "<usuario>" ou senha "<senha>" inválidos
-            E eu clico no botão "Login"
+            Quando eu insiro um usuário "<usuario>" ou senha "<senha>" inválidos e clico no botão "Login"
             Então eu vejo uma mensagem de alerta "<mensagem>"
 
             Exemplos:
-            | usuario              | senha           | mensagem                   |
-            | usuario_cadastrado   | senha_incorreta | Usuário ou senha inválidos |
-            | usuario_cadastrado   | senha_correta   | Bem-Vindo, usuário         |
-            | usuario_sem_cadastro | senha_correta   | Usuário ou senha inválidos |
-            | usuario_sem_cadastro | senha_incorreta | Usuário ou senha inválidos |
+            | usuario              | senha           | mensagem                                                                              |
+            | bruno@gmail.com      | 123321@         | Erro: A senha fornecida para o e-mail bruno@gmail.com está incorreta. Perdeu a senha? |
+            | bruno@gmail.com      | 123@test        | Olá, bruno@gmail.com (não é bruno@gmail.com? Sair)                                    |
+            | brunno@gmail.com     | 123@test        | Endereço de e-mail desconhecido. Verifique novamente ou tente seu nome de usuário.    |
+            | brunno@gmail.com     | 123321@         | Endereço de e-mail desconhecido. Verifique novamente ou tente seu nome de usuário.    |
 
+
+            Cenário: Botão de "sair" após realizar login 
+            Dado que estou na página de login da EBAC-SHOP e insiro as credenciais válidas para realizar o login
+            Quando eu clico no botão "sair"
+            Então eu saio da minha conta logada.
